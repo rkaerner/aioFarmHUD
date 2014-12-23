@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<modDesc descVersion="21">
+	<author>Bauer Hannsen</author>
+	<version>1.0.0</version>
+	<annotation>whole mod inspired by Monax Company, fozzy691 & DjiZon, Syrius</annotation>
+	<title>
+		<de>All in one Farm HUD</de>
+		<en>All in one Farm HUD</en>
+	</title>
+	<description>
+		<de><![CDATA[Zeigt die Füllstände der Silos und Informationen über Tiere in einem extra HUD.]]></de>
+		<en><![CDATA[Shows the Silo Amounts and informations about animals in an extra HUD.]]></en>
+	</description>
+	<multiplayer supported="true" />
+	<iconFilename>store.dds</iconFilename>
+
+	<extraSourceFiles>
+		<sourceFile filename="aioFarmHUD.lua" />
+	</extraSourceFiles>
+	
+	<inputBindings>
+		<input name="TOGGLE_FARMHUD" category="ONFOOT VEHICLE" key1="KEY_lalt KEY_KP_multiply" key2="" button="" device="0" mouse="" />
+		<input name="TOGGLE_FARMHUD_ALT" category="ONFOOT VEHICLE" key1="KEY_lalt KEY_h" key2="" button="" device="0" mouse="" />
+	</inputBindings>
+	
+	<l10n>
+		<text name="TOGGLE_FARMHUD"><de>HofHUD anzeigen/ausblenden</de><en>Show/Hide FarmHUD</en></text>
+		<text name="TOGGLE_FARMHUD_ON"><de>HofHUD anzeigen</de><en>Show FarmHUD</en></text>
+		<text name="TOGGLE_FARMHUD_OFF"><de>HofHUD ausblenden</de><en>Hide FarmHUD</en></text>
+		<text name="TOGGLE_FARMHUD_ALT"><de>HofHUD anzeigen/ausblenden</de><en>Show/Hide FarmHUD</en></text>
+		<text name="TOGGLE_FARMHUD_ALT_ON"><de>HofHUD anzeigen</de><en>Show FarmHUD</en></text>
+		<text name="TOGGLE_FARMHUD_ALT_OFF"><de>HofHUD ausblenden</de><en>Hide FarmHUD</en></text>
+
+		<text name="HUD_delimiter"><de>.</de><en>,</en></text>
+
+		<text name="HUD_farm_title"><de>Hof</de><en>Farm</en></text>
+		<text name="HUD_wheat_storage"><de>Weizen</de><en>wheat</en></text>
+		<text name="HUD_barley_storage"><de>Gerste</de><en>barley</en></text>
+		<text name="HUD_rape_storage"><de>Raps</de><en>rape</en></text>
+		<text name="HUD_maize_storage"><de>Mais</de><en>maize</en></text>
+		<text name="HUD_potato_storage"><de>Kartoffeln</de><en>potato</en></text>
+		<text name="HUD_sugarBeet_storage"><de>Zuckerrüben</de><en>sugarbeet</en></text>
+		<text name="HUD_woodChips_storage"><de>Hackschnitzel</de><en>woodchips</en></text>
+
+		<text name="HUD_extrastorage_title"><de>Futterlager</de><en>extra storage</en></text>
+		<text name="HUD_grass_storage"><de>Gras</de><en>grass</en></text>
+		<text name="HUD_straw_storage"><de>Stroh</de><en>straw</en></text>
+		<text name="HUD_silage_storage"><de>Silage</de><en>silage</en></text>
+		<text name="HUD_forage_storage"><de>Mischfutter</de><en>forage</en></text>
+		<text name="HUD_chaff_storage"><de>Maishäcksel</de><en>chaff</en></text>
+		<text name="HUD_manure_storage"><de>Mist</de><en>manure</en></text>
+		<text name="HUD_liquidManure_storage"><de>Gülle</de><en>liquid manure</en></text>
+
+		<text name="HUD_cow_title"><de>Kuhweide</de><en>cow paddock</en></text>
+		<text name="HUD_milk"><de>Milch</de><en>milk</en></text>
+		<text name="HUD_manure_cow"><de>Mist</de><en>manure</en></text>
+		<text name="HUD_liquidManure_cow"><de>Gülle</de><en>liquid manure</en></text>
+
+		<text name="HUD_biogas_title"><de>BGA</de><en>biogas plant</en></text>
+		<text name="HUD_liquidManure_bga"><de>Gülle</de><en>BGA, liquid manure</en></text>
+		
+		<text name="HUD_sheep_title"><de>Schafweide</de><en>sheep paddock</en></text>
+
+		<text name="HUD_chicken_title"><de>Hühnerstall</de><en>chicken house</en></text>
+
+		<text name="HUD_silagesilo_title"><de>Silage Silos</de><en>silage silos</en></text>
+		<text name="HUD_SILO1"><de>Kuhweide</de><en>cow paddock</en></text>
+		<text name="HUD_SILO2"><de>BGA #1</de><en>BGA #1</en></text>
+		<text name="HUD_SILO3"><de>BGA #2</de><en>BGA #2</en></text>
+		<text name="HUD_SILO4"><de>BGA #3</de><en>BGA #3</en></text>
+		<text name="HUD_SILO5"><de>BGA #4</de><en>BGA #4</en></text>
+		<text name="HUD_SILO"><de>Silo</de><en>Silo</en></text>
+		<text name="HUD_AMOUNT"><de>Menge</de><en>Amount</en></text>
+		<text name="HUD_CF"><de>V./G.</de><en>C./F.</en></text>
+
+	</l10n>
+
+</modDesc>
