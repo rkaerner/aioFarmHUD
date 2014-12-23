@@ -4,7 +4,7 @@ local metadata = {
 "## Notes: Silostände, Tierinformationen",
 "## Author: Bauer Hannsen",
 "## Version: 1.0.0",
-"## Date: 20.12.2014"
+"## Date: 23.12.2014"
 }
 -- set a lot of variables
 cc = 20;
@@ -301,7 +301,7 @@ function aioFarmHUD:draw()
 				if obj.state == 0 and obj.fillLevel > 0 then
 					setTextColor(0, 1, 0, 1);
 				elseif obj.state == 2 then
-					setTextColor(0.3, 0.1, 0, 1);
+					setTextColor(1, 0.47, 0, 1);
 				elseif obj.state == 0 and obj.fillLevel == 0 then
 					setTextColor(1, 1, 1, 1);
 				else
