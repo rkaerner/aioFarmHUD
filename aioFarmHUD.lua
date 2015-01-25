@@ -159,16 +159,6 @@ function aioFarmHUD:draw()
 			cc = cc + 1;
 			local ccm = cc;
 			setTextAlignment(RenderText.ALIGN_LEFT);
-			-- renderText(TPosX, TPosYBegin-Font * cc, Font, g_i18n:getText("HUD_SILO1") .. ":");
-			-- cc = cc + 1;
-			-- renderText(TPosX, TPosYBegin-Font * cc, Font, g_i18n:getText("HUD_SILO2") .. ":");
-			-- cc = cc + 1;
-			-- renderText(TPosX, TPosYBegin-Font * cc, Font, g_i18n:getText("HUD_SILO3") .. ":");
-			-- cc = cc + 1;
-			-- renderText(TPosX, TPosYBegin-Font * cc, Font, g_i18n:getText("HUD_SILO4") .. ":");
-			-- cc = cc + 1;
-			-- renderText(TPosX, TPosYBegin-Font * cc, Font, g_i18n:getText("HUD_SILO5") .. ":");
-			-- cc = cc + 1;
 			local bgacount = 1;
 			for key, value in pairs(silo) do
 				renderText(TPosX, TPosYBegin-Font * cc, Font, "BGA #" .. bgacount .. ":");

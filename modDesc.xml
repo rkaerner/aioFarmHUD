@@ -64,12 +64,6 @@
 		<text name="HUD_chicken_title"><de>Hühnerstall</de><en>chicken house</en></text>
 
 		<text name="HUD_silagesilo_title"><de>Silage Silos</de><en>silage silos</en></text>
-		<text name="HUD_SILO1"><de>Kuhweide</de><en>cow paddock</en></text>
-		<text name="HUD_SILO2"><de>BGA #1</de><en>BGA #1</en></text>
-		<text name="HUD_SILO3"><de>BGA #2</de><en>BGA #2</en></text>
-		<text name="HUD_SILO4"><de>BGA #3</de><en>BGA #3</en></text>
-		<text name="HUD_SILO5"><de>BGA #4</de><en>BGA #4</en></text>
-		<text name="HUD_SILO6"><de>BGA #6</de><en>BGA #6</en></text>
 		<text name="HUD_SILO"><de>Silo</de><en>Silo</en></text>
 		<text name="HUD_AMOUNT"><de>Menge</de><en>Amount</en></text>
 		<text name="HUD_CF"><de>V./G.</de><en>C./F.</en></text>
