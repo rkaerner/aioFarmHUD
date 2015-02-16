@@ -325,7 +325,7 @@ function aioFarmHUD:draw()
 					if Animals.cow:getFillLevel(Fillable.FILLTYPE_WATER) <= Animals.cow.totalNumAnimals * 60 / 24 and Animals.cow:getFillLevel(Fillable.FILLTYPE_WATER) >= 1 then
 						setTextColor(1, 0, 0, 0.5);
 					end;
-					renderText(APosX, TPosYBegin-Font * cc, Font, comma_value(round(Animals.cow:getFillLevel(Fillable.FILLTYPE_WATER))) .. " " .. g_i18n:getText("fluid_unit_short"));
+					renderText(APosX, TPosYBegin-Font * cc, Font, comma_value(round(Animals.cow:getFillLevel(Fillable.FILLTYPE_WATER))) .. "  " .. g_i18n:getText("fluid_unit_short"));
 					setTextColor(1, 1, 1, 1);
 					setTextAlignment(RenderText.ALIGN_LEFT);
 					cc = cc + 1;
@@ -388,7 +388,7 @@ function aioFarmHUD:draw()
 					if Animals.sheep:getFillLevel(Fillable.FILLTYPE_WATER) <= Animals.sheep.totalNumAnimals * 10 / 24 and Animals.sheep:getFillLevel(Fillable.FILLTYPE_WATER) >= 1 then
 						setTextColor(1, 0, 0, 0.5);
 					end;
-					renderText(APosX, TPosYBegin-Font * cc, Font, comma_value(round(Animals.sheep:getFillLevel(Fillable.FILLTYPE_WATER))) .. " " .. g_i18n:getText("fluid_unit_short"));
+					renderText(APosX, TPosYBegin-Font * cc, Font, comma_value(round(Animals.sheep:getFillLevel(Fillable.FILLTYPE_WATER))) .. "  " .. g_i18n:getText("fluid_unit_short"));
 					setTextColor(1, 1, 1, 1);
 					setTextAlignment(RenderText.ALIGN_LEFT);
 					cc = cc + 1;
@@ -429,7 +429,7 @@ function aioFarmHUD:draw()
 					if Animals.chicken:getFillLevel(Fillable.FILLTYPE_WATER) <= Animals.chicken.totalNumAnimals * 1 / 24 and Animals.chicken:getFillLevel(Fillable.FILLTYPE_WATER) >= 1 then
 						setTextColor(1, 0, 0, 0.5);
 					end;
-					renderText(APosX, TPosYBegin-Font * cc, Font, comma_value(round(Animals.chicken:getFillLevel(Fillable.FILLTYPE_WATER))) .. " " .. g_i18n:getText("fluid_unit_short"));
+					renderText(APosX, TPosYBegin-Font * cc, Font, comma_value(round(Animals.chicken:getFillLevel(Fillable.FILLTYPE_WATER))) .. "  " .. g_i18n:getText("fluid_unit_short"));
 					setTextColor(1, 1, 1, 1);
 					setTextAlignment(RenderText.ALIGN_LEFT);
 					cc = cc + 1;
@@ -440,7 +440,7 @@ function aioFarmHUD:draw()
 					if Animals.chicken:getFillLevel(Fillable.FILLTYPE_WHEAT) <= Animals.chicken.totalNumAnimals * 0.5 / 24 and Animals.chicken:getFillLevel(Fillable.FILLTYPE_WHEAT) >= 1 then
 						setTextColor(1, 0, 0, 0.5);
 					end;
-					renderText(APosX, TPosYBegin-Font * cc, Font, comma_value(round(Animals.chicken:getFillLevel(Fillable.FILLTYPE_WHEAT))) .. " " .. g_i18n:getText("fluid_unit_short"));
+					renderText(APosX, TPosYBegin-Font * cc, Font, comma_value(round(Animals.chicken:getFillLevel(Fillable.FILLTYPE_WHEAT))) .. "  " .. g_i18n:getText("fluid_unit_short"));
 					setTextColor(1, 1, 1, 1);
 					setTextAlignment(RenderText.ALIGN_LEFT);
 					cc = cc + 1;
