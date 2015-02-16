@@ -3,7 +3,7 @@ local metadata = {
 "## Title: aioFarmHUD",
 "## Notes: Silostände, Tierinformationen",
 "## Author: Bauer Hannsen",
-"## Version: 2.0.0",
+"## Version: 2.0.1",
 "## Date: 23.12.2014"
 }
 -- set a lot of variables
