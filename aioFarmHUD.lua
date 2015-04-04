@@ -20,9 +20,10 @@ WoolWarning = 85; -- in percent
 ManureWarning = 85; -- in percent
 
 local aioFarmHUD_directory = g_currentModDirectory;
+local file = getUserProfileAppPath() .. "/mods/MischStation.zip";
 
 function aioFarmHUD:loadMap(name)
-	self.Overlay=createImageOverlay(aioFarmHUD_directory.."background.dds")
+	self.Overlay=createImageOverlay(aioFarmHUD_directory .. "background.dds")
 	if g_currentMission.onCreateLoadedObjects ~= nil then
 		a = 1;
 		for k, v in pairs(g_currentMission.onCreateLoadedObjects) do
@@ -196,7 +197,7 @@ function aioFarmHUD:draw()
 				setTextBold(false);
 				cc = cc + 1;
 				renderText(TPosX, TPosYBegin-Font * cc, Font, g_i18n:getText("HUD_liquidManure_bga") .. ":");
-				setTextAlignement(RenderText.ALIGN_RIGHT);
+				setTextAlignment(RenderText.ALIGN_RIGHT);
 				if round(bgaLiquidManure * 100 / bgaLiquidManureMax) >= ManureWarning then
 					setTextColor(1, 0, 0, 0.5);
 				end;
@@ -353,6 +354,15 @@ function aioFarmHUD:draw()
 				setTextColor(1, 1, 1, 1);
 				setTextAlignment(RenderText.ALIGN_LEFT);
 				cc = cc + 1;
+			end;
+
+			-- hopefully we are able to read and display fill states of marhu's mixing station (the mod version, not the one which has to be build into the map with GE
+			if fileExists(file) then
+				--for i = 1, table.getn(MischStation:self.MixTypName) do
+					--local text = string.format("%s",MischStation:self.MixTypName[i].name.." [l]");
+					--local Percentage = math.abs(MischStation:self.MixTypLvl[i] / MischStation:self.TipTriggers[i].capacity * 100);
+					--text = text.." "..string.format("%d (%d%%)",MischStation:self.MixTypLvl[i],Percentage);
+				--end;
 			end;
 
 			-- sheep paddock and its elements
