@@ -72,7 +72,7 @@ function aioFarmHUD:draw()
 
 			-- calculate fill levels
 			local object = g_currentMission.onCreateLoadedObjectsToSave; 
-			local cowLiquidManure, cowLiquidManureMax, bgaLiquidManure, bgaLiquidManureMax, manureFillLevel, manureFillLevelmax, milkFillLevel; 
+			local cowLiquidManure, cowLiquidManureMax, bgaLiquidManure, bgaLiquidManureMax, manureFillLevel, manureFillLevelmax, milkFillLevel, bunkerFillLevel, bunkerFillLevelMax; 
 			for i = 1, #object do 
 				if object[i].liquidManureTrigger then 
 					cowLiquidManure = object[i].liquidManureTrigger.fillLevel;
@@ -89,6 +89,10 @@ function aioFarmHUD:draw()
 				if object[i].fillLevelMilk then 
 					milkFillLevel = object[i].fillLevelMilk; 
 				end; 
+				if object[i].bunker then
+					bunkerFillLevel = object[i].bunker.fillLevel;
+					bunkerFillLevelMax = object[i].bunker.capacity;
+				end;
 			end; 
 
 			cc = 1;
@@ -188,6 +192,23 @@ function aioFarmHUD:draw()
 				end;
 			end;
 
+			-- is there a liquid manure storage on the map?
+			if g_currentMission:getSiloAmount(Fillable.FILLTYPE_LIQUIDMANURE) > 0 then
+				renderText(TPosX, TPosYBegin-Font * cc, Font, ""); -- empty line
+				cc = cc + 1;
+				setTextBold(true);
+				renderText(TPosX, TPosYBegin-Font * cc, Font, g_i18n:getText("HUD_liquidManure_storage_title"));
+				setTextBold(false);
+				cc = cc + 1;
+				if g_currentMission:getSiloAmount(Fillable.FILLTYPE_LIQUIDMANURE) ~= nil and g_currentMission:getSiloAmount(Fillable.FILLTYPE_LIQUIDMANURE) > 0 then
+					renderText(TPosX, TPosYBegin-Font * cc, Font, g_i18n:getText("HUD_liquidManure_storage") .. ":");
+					setTextAlignment(RenderText.ALIGN_RIGHT);
+					renderText(APosX, TPosYBegin-Font * cc, Font, comma_value(round(g_currentMission:getSiloAmount(Fillable.FILLTYPE_LIQUIDMANURE))) .. "  " .. g_i18n:getText("fluid_unit_short"));
+					setTextAlignment(RenderText.ALIGN_LEFT);
+					cc = cc + 1;
+				end;
+			end;
+
 			-- biogas plant and its elements
 			if bgaLiquidManure > 0 then
 				renderText(TPosX, TPosYBegin-Font * cc, Font, ""); -- empty line
@@ -203,7 +224,7 @@ function aioFarmHUD:draw()
 				end;
 				renderText(APosX, TPosYBegin-Font*cc, Font, comma_value(round(bgaLiquidManure)) .. "  " .. g_i18n:getText("fluid_unit_short"));
 				setTextColor(1, 1, 1, 1);
-				setTextAlignement(RenderText.ALIGN_LEFT);
+				setTextAlignment(RenderText.ALIGN_LEFT);
 				cc = cc + 1;
 			end;
 

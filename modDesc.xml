@@ -50,6 +50,7 @@
 		<text name="HUD_chaff_storage"><de>Maishäcksel</de><en>chaff</en></text>
 		<text name="HUD_manure_storage"><de>Mist</de><en>manure</en></text>
 		<text name="HUD_liquidManure_storage"><de>Gülle</de><en>liquid manure</en></text>
+		<text name="HUD_liquidManure_storage_title"><de>Güllelager</de><en>liquid manure storage</en></text>
 
 		<text name="HUD_cow_title"><de>Kuhweide</de><en>cow paddock</en></text>
 		<text name="HUD_milk"><de>Milch</de><en>milk</en></text>
