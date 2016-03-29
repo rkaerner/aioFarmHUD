@@ -3,7 +3,7 @@ local metadata = {
 "## Title: aioFarmHUD",
 "## Notes: Silostände, Tierinformationen",
 "## Author: Bauer Hannsen",
-"## Version: 2.0.1",
+"## Version: 2.0.2",
 "## Date: 23.12.2014"
 }
 -- set a lot of variables
@@ -210,7 +210,7 @@ function aioFarmHUD:draw()
 			end;
 
 			-- biogas plant and its elements
-			if bgaLiquidManure > 0 then
+			if bgaLiquidManure ~= nil and bgaLiquidManure > 0 then
 				renderText(TPosX, TPosYBegin-Font * cc, Font, ""); -- empty line
 				cc = cc + 1;
 				setTextBold(true);
@@ -274,6 +274,10 @@ function aioFarmHUD:draw()
 
 			-- cow paddock and its elements
 			if Animals.cow.totalNumAnimals > 0 then
+				DaysFeedingStrawCowLeft = Animals.cow:getFillLevel(Fillable.FILLTYPE_WHEAT_WINDROW) / Animals.cow.totalNumAnimals / 100;
+				DaysFeedingGrassCowLeft = Animals.cow:getFillLevel(Fillable.FILLTYPE_GRASS_WINDROW) / Animals.cow.totalNumAnimals / 115;
+				DaysFeedingSilageCowLeft = Animals.cow:getFillLevel(Fillable.FILLTYPE_SILAGE) / Animals.cow.totalNumAnimals / 85;
+				DaysFeedingForageCowLeft = Animals.cow:getFillLevel(Fillable.FILLTYPE_FORAGE) / Animals.cow.totalNumAnimals / 330;
 				renderText(TPosX, TPosYBegin-Font * cc, Font, ""); -- empty line
 				cc = cc + 1;
 				setTextBold(true);
@@ -300,11 +304,13 @@ function aioFarmHUD:draw()
 					cc = cc + 1;
 				end;
 				if Animals.cow:getFillLevel(Fillable.FILLTYPE_FORAGE) ~= nil and Animals.cow:getFillLevel(Fillable.FILLTYPE_FORAGE) > 0 then
-					renderText(TPosX, TPosYBegin-Font * cc, Font, g_i18n:getText("FeedingTroughForage_storage") .. ":");
-					if Animals.cow:getFillLevel(Fillable.FILLTYPE_FORAGE) <= Animals.cow.totalNumAnimals * 7.5 and Animals.cow:getFillLevel(Fillable.FILLTYPE_FORAGE) >= 1 then
+					--renderText(TPosX, TPosYBegin-Font * cc, Font, g_i18n:getText("FeedingTroughForage_storage") .. ":");
+					renderText(TPosX, TPosYBegin-Font * cc, Font, "Futtertrog" .. ":");
+					if Animals.cow:getFillLevel(Fillable.FILLTYPE_FORAGE) <= Animals.cow.totalNumAnimals * 190 and Animals.cow:getFillLevel(Fillable.FILLTYPE_FORAGE) >= 1 then
 						setTextColor(1,0,0,0.5);
 					end;
 					setTextAlignment(RenderText.ALIGN_RIGHT);
+					renderText(TPosX + 0.09, TPosYBegin-Font * cc, Font, string.format("%.1f", comma_value(DaysFeedingForageCowLeft)) .. " " .. g_i18n:getText("HUD_day"));
 					renderText(APosX, TPosYBegin-Font * cc, Font, comma_value(round(Animals.cow:getFillLevel(Fillable.FILLTYPE_FORAGE))) .. "  " .. g_i18n:getText("fluid_unit_short"));
 					setTextColor(1, 1, 1, 1);
 					setTextAlignment(RenderText.ALIGN_LEFT);
@@ -312,10 +318,11 @@ function aioFarmHUD:draw()
 				end;
 				if Animals.cow:getFillLevel(Fillable.FILLTYPE_SILAGE) ~= nil and Animals.cow:getFillLevel(Fillable.FILLTYPE_SILAGE) > 0 then
 					renderText(TPosX, TPosYBegin-Font * cc, Font, g_i18n:getText("FeedingTroughSilage_storage") .. ":");
-					if Animals.cow:getFillLevel(Fillable.FILLTYPE_SILAGE) <= Animals.cow.totalNumAnimals * 7.5 and Animals.cow:getFillLevel(Fillable.FILLTYPE_SILAGE) >= 1 then
+					if Animals.cow:getFillLevel(Fillable.FILLTYPE_SILAGE) <= Animals.cow.totalNumAnimals * 85 and Animals.cow:getFillLevel(Fillable.FILLTYPE_SILAGE) >= 1 then
 						setTextColor(1,0,0,0.5);
 					end;
 					setTextAlignment(RenderText.ALIGN_RIGHT);
+					renderText(TPosX + 0.09, TPosYBegin-Font * cc, Font, string.format("%.1f", comma_value(DaysFeedingSilageCowLeft)) .. " " .. g_i18n:getText("HUD_day"));
 					renderText(APosX, TPosYBegin-Font * cc, Font, comma_value(round(Animals.cow:getFillLevel(Fillable.FILLTYPE_SILAGE))) .. "  " .. g_i18n:getText("fluid_unit_short"));
 					setTextColor(1, 1, 1, 1);
 					setTextAlignment(RenderText.ALIGN_LEFT);
@@ -323,30 +330,34 @@ function aioFarmHUD:draw()
 				end;
 				if Animals.cow:getFillLevel(Fillable.FILLTYPE_GRASS_WINDROW) ~= nil and Animals.cow:getFillLevel(Fillable.FILLTYPE_GRASS_WINDROW) > 0 then
 					renderText(TPosX, TPosYBegin-Font * cc, Font, g_i18n:getText("FeedingTroughGrass_storage") .. ":");
-					if Animals.cow:getFillLevel(Fillable.FILLTYPE_GRASS_WINDROW) <= Animals.cow.totalNumAnimals * 7.5 and Animals.cow:getFillLevel(Fillable.FILLTYPE_GRASS_WINDROW) >= 1 then
+					if Animals.cow:getFillLevel(Fillable.FILLTYPE_GRASS_WINDROW) <= Animals.cow.totalNumAnimals * 115 and Animals.cow:getFillLevel(Fillable.FILLTYPE_GRASS_WINDROW) >= 1 then
 						setTextColor(1,0,0,0.5);
 					end;
 					setTextAlignment(RenderText.ALIGN_RIGHT);
+					renderText(TPosX + 0.09, TPosYBegin-Font * cc, Font, string.format("%.1f", comma_value(DaysFeedingGrassCowLeft)) .. " " .. g_i18n:getText("HUD_day"));
 					renderText(APosX, TPosYBegin-Font * cc, Font, comma_value(round(Animals.cow:getFillLevel(Fillable.FILLTYPE_GRASS_WINDROW))) .. "  " .. g_i18n:getText("fluid_unit_short"));
 					setTextColor(1, 1, 1, 1);
 					setTextAlignment(RenderText.ALIGN_LEFT);
 					cc = cc + 1;
 				end;
 				renderText(TPosX, TPosYBegin-Font * cc, Font, g_i18n:getText("Straw_storage") .. ":");
-				if Animals.cow:getFillLevel(Fillable.FILLTYPE_WHEAT_WINDROW) <= Animals.cow.totalNumAnimals * 7.5 and Animals.cow:getFillLevel(Fillable.FILLTYPE_WHEAT_WINDROW) >= 1 then
+				if Animals.cow:getFillLevel(Fillable.FILLTYPE_WHEAT_WINDROW) <= Animals.cow.totalNumAnimals * 60 and Animals.cow:getFillLevel(Fillable.FILLTYPE_WHEAT_WINDROW) >= 1 then
 					setTextColor(1, 0, 0, 0.5);
 				end;
 				setTextAlignment(RenderText.ALIGN_RIGHT);
+				renderText(TPosX + 0.09, TPosYBegin-Font * cc, Font, string.format("%.1f", comma_value(DaysFeedingStrawCowLeft)) .. " " .. g_i18n:getText("HUD_day"));
 				renderText(APosX, TPosYBegin-Font * cc, Font, comma_value(round(Animals.cow:getFillLevel(Fillable.FILLTYPE_WHEAT_WINDROW))) .. "  " .. g_i18n:getText("fluid_unit_short"));
 				setTextColor(1, 1, 1, 1);
 				setTextAlignment(RenderText.ALIGN_LEFT);
 				cc = cc + 1;
 				if Animals.cow:getFillLevel(Fillable.FILLTYPE_WATER) ~= nil and Animals.cow:getFillLevel(Fillable.FILLTYPE_WATER) > 0 then
+					DaysFeedingWaterCowLeft = Animals.cow:getFillLevel(Fillable.FILLTYPE_WATER) / Animals.cow.totalNumAnimals / 60;
 					renderText(TPosX, TPosYBegin-Font * cc, Font, g_i18n:getText("HUD_water") .. ":");
-					setTextAlignment(RenderText.ALIGN_RIGHT);
-					if Animals.cow:getFillLevel(Fillable.FILLTYPE_WATER) <= Animals.cow.totalNumAnimals * 60 / 24 and Animals.cow:getFillLevel(Fillable.FILLTYPE_WATER) >= 1 then
+					if Animals.cow:getFillLevel(Fillable.FILLTYPE_WATER) <= Animals.cow.totalNumAnimals * 60 and Animals.cow:getFillLevel(Fillable.FILLTYPE_WATER) >= 1 then
 						setTextColor(1, 0, 0, 0.5);
 					end;
+					setTextAlignment(RenderText.ALIGN_RIGHT);
+					renderText(TPosX + 0.09, TPosYBegin-Font * cc, Font, string.format("%.1f", comma_value(DaysFeedingWaterCowLeft)) .. " " .. g_i18n:getText("HUD_day"));
 					renderText(APosX, TPosYBegin-Font * cc, Font, comma_value(round(Animals.cow:getFillLevel(Fillable.FILLTYPE_WATER))) .. "  " .. g_i18n:getText("fluid_unit_short"));
 					setTextColor(1, 1, 1, 1);
 					setTextAlignment(RenderText.ALIGN_LEFT);
@@ -388,6 +399,7 @@ function aioFarmHUD:draw()
 
 			-- sheep paddock and its elements
 			if Animals.sheep.totalNumAnimals > 0 then
+				DaysFeedingGrassSheepLeft = Animals.sheep:getFillLevel(Fillable.FILLTYPE_FORAGE) / Animals.sheep.totalNumAnimals / 20;
 				renderText(TPosX, TPosYBegin-Font * cc, Font, ""); -- empty line
 				cc = cc + 1;
 				setTextBold(true);
@@ -405,20 +417,23 @@ function aioFarmHUD:draw()
 				setTextAlignment(RenderText.ALIGN_LEFT);
 				cc = cc + 1;
 				renderText(TPosX, TPosYBegin-Font * cc, Font, g_i18n:getText("FeedingTroughMisc_storage") .. ":");
-				setTextAlignment(RenderText.ALIGN_RIGHT);
-				if Animals.sheep:getFillLevel(Fillable.FILLTYPE_FORAGE) <= Animals.sheep.totalNumAnimals * 7.5 and Animals.sheep:getFillLevel(Fillable.FILLTYPE_FORAGE) >= 1 then
+				if Animals.sheep:getFillLevel(Fillable.FILLTYPE_FORAGE) <= Animals.sheep.totalNumAnimals * 20 and Animals.sheep:getFillLevel(Fillable.FILLTYPE_FORAGE) >= 1 then
 					setTextColor(1, 0, 0, 0.5);
 				end;
+				setTextAlignment(RenderText.ALIGN_RIGHT);
+				renderText(TPosX + 0.09, TPosYBegin-Font * cc, Font, string.format("%.1f", comma_value(DaysFeedingGrassSheepLeft)) .. " " .. g_i18n:getText("HUD_day"));
 				renderText(APosX, TPosYBegin-Font * cc, Font, comma_value(round(Animals.sheep:getFillLevel(Fillable.FILLTYPE_FORAGE))) .. "  " .. g_i18n:getText("fluid_unit_short"));
 				setTextColor(1, 1, 1, 1);
 				setTextAlignment(RenderText.ALIGN_LEFT);
 				cc = cc + 1;
 				if Animals.sheep:getFillLevel(Fillable.FILLTYPE_WATER) ~= nil and Animals.sheep:getFillLevel(Fillable.FILLTYPE_WATER) > 0 then
+					DaysFeedingWaterSheepLeft = Animals.sheep:getFillLevel(Fillable.FILLTYPE_WATER) / Animals.sheep.totalNumAnimals / 10;
 					renderText(TPosX, TPosYBegin-Font * cc, Font, g_i18n:getText("HUD_water") .. ":");
-					setTextAlignment(RenderText.ALIGN_RIGHT);
-					if Animals.sheep:getFillLevel(Fillable.FILLTYPE_WATER) <= Animals.sheep.totalNumAnimals * 10 / 24 and Animals.sheep:getFillLevel(Fillable.FILLTYPE_WATER) >= 1 then
+					if Animals.sheep:getFillLevel(Fillable.FILLTYPE_WATER) <= Animals.sheep.totalNumAnimals * 10 and Animals.sheep:getFillLevel(Fillable.FILLTYPE_WATER) >= 1 then
 						setTextColor(1, 0, 0, 0.5);
 					end;
+					setTextAlignment(RenderText.ALIGN_RIGHT);
+					renderText(TPosX + 0.09, TPosYBegin-Font * cc, Font, string.format("%.1f", comma_value(DaysFeedingWaterSheepLeft)) .. " " .. g_i18n:getText("HUD_day"));
 					renderText(APosX, TPosYBegin-Font * cc, Font, comma_value(round(Animals.sheep:getFillLevel(Fillable.FILLTYPE_WATER))) .. "  " .. g_i18n:getText("fluid_unit_short"));
 					setTextColor(1, 1, 1, 1);
 					setTextAlignment(RenderText.ALIGN_LEFT);
@@ -443,6 +458,8 @@ function aioFarmHUD:draw()
 
 			-- chicken house and its elements
 			if Animals.chicken.totalNumAnimals > 1 then
+				DaysFeedingWheatChickenLeft = Animals.chicken:getFillLevel(Fillable.FILLTYPE_WHEAT) / Animals.chicken.totalNumAnimals / 0.5;
+				DaysFeedingWaterChickenLeft = Animals.chicken:getFillLevel(Fillable.FILLTYPE_WATER) / Animals.chicken.totalNumAnimals / 1;
 				renderText(TPosX, TPosYBegin-Font * cc, Font, ""); -- empty line
 				cc = cc + 1;
 				setTextBold(true);
@@ -454,12 +471,18 @@ function aioFarmHUD:draw()
 				renderText(APosX, TPosYBegin-Font * cc, Font, comma_value(round(Animals.chicken.totalNumAnimals)) .. "   ");
 				setTextAlignment(RenderText.ALIGN_LEFT);
 				cc = cc + 1;
+				renderText(TPosX, TPosYBegin-Font * cc, Font, g_i18n:getText("Productivity") .. ":");
+				setTextAlignment(RenderText.ALIGN_RIGHT);
+				renderText(APosX, TPosYBegin-Font * cc, Font, round(Animals.chicken.productivity * 100) .. "%");
+				setTextAlignment(RenderText.ALIGN_LEFT);
+				cc = cc + 1;
 				if Animals.chicken:getFillLevel(Fillable.FILLTYPE_WATER) ~= nil and Animals.chicken:getFillLevel(Fillable.FILLTYPE_WATER) > 0 then
 					renderText(TPosX, TPosYBegin-Font * cc, Font, g_i18n:getText("HUD_water") .. ":");
-					setTextAlignment(RenderText.ALIGN_RIGHT);
 					if Animals.chicken:getFillLevel(Fillable.FILLTYPE_WATER) <= Animals.chicken.totalNumAnimals * 1 / 24 and Animals.chicken:getFillLevel(Fillable.FILLTYPE_WATER) >= 1 then
 						setTextColor(1, 0, 0, 0.5);
 					end;
+					setTextAlignment(RenderText.ALIGN_RIGHT);
+					renderText(TPosX + 0.09, TPosYBegin-Font * cc, Font, string.format("%.1f", comma_value(DaysFeedingWaterChickenLeft)) .. " " .. g_i18n:getText("HUD_day"));
 					renderText(APosX, TPosYBegin-Font * cc, Font, comma_value(round(Animals.chicken:getFillLevel(Fillable.FILLTYPE_WATER))) .. "  " .. g_i18n:getText("fluid_unit_short"));
 					setTextColor(1, 1, 1, 1);
 					setTextAlignment(RenderText.ALIGN_LEFT);
@@ -467,10 +490,11 @@ function aioFarmHUD:draw()
 				end;
 				if Animals.chicken:getFillLevel(Fillable.FILLTYPE_WHEAT) ~= nil and Animals.chicken:getFillLevel(Fillable.FILLTYPE_WHEAT) > 0 then
 					renderText(TPosX, TPosYBegin-Font * cc, Font, g_i18n:getText("HUD_wheat_storage") .. ":");
-					setTextAlignment(RenderText.ALIGN_RIGHT);
 					if Animals.chicken:getFillLevel(Fillable.FILLTYPE_WHEAT) <= Animals.chicken.totalNumAnimals * 0.5 / 24 and Animals.chicken:getFillLevel(Fillable.FILLTYPE_WHEAT) >= 1 then
 						setTextColor(1, 0, 0, 0.5);
 					end;
+					setTextAlignment(RenderText.ALIGN_RIGHT);
+					renderText(TPosX + 0.09, TPosYBegin-Font * cc, Font, string.format("%.1f", comma_value(DaysFeedingWheatChickenLeft)) .. " " .. g_i18n:getText("HUD_day"));
 					renderText(APosX, TPosYBegin-Font * cc, Font, comma_value(round(Animals.chicken:getFillLevel(Fillable.FILLTYPE_WHEAT))) .. "  " .. g_i18n:getText("fluid_unit_short"));
 					setTextColor(1, 1, 1, 1);
 					setTextAlignment(RenderText.ALIGN_LEFT);
